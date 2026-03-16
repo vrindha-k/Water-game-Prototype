@@ -2,79 +2,98 @@ let score = 0;
 
 function spawnDrop(){
 
-  let drop = document.createElement("div");
-  drop.classList.add("drop");
-  drop.innerHTML = "💧";
+let drop = document.createElement("div");
+drop.className = "drop";
+drop.innerHTML = "💧";
 
-  drop.style.left = Math.random()*90 + "%";
-  drop.style.top = "0px";
+drop.style.left = Math.random()*90 + "%";
+drop.style.top = "0px";
 
-  drop.onclick = function(){
-    score += 10;
-    document.getElementById("score").innerText = score;
-    drop.remove();
-    checkWin();
-  }
+drop.onclick = function(){
 
-  document.getElementById("gameArea").appendChild(drop);
+score += 10;
+updateScore();
+drop.remove();
+checkWin();
 
-  fall(drop);
+}
+
+document.getElementById("gameArea").appendChild(drop);
+
+fall(drop);
+
 }
 
 function spawnTrash(){
 
-  let trash = document.createElement("div");
-  trash.classList.add("trash");
-  trash.innerHTML = "🗑️";
+let trash = document.createElement("div");
+trash.className = "trash";
+trash.innerHTML = "🗑️";
 
-  trash.style.left = Math.random()*90 + "%";
-  trash.style.top = "0px";
+trash.style.left = Math.random()*90 + "%";
+trash.style.top = "0px";
 
-  trash.onclick = function(){
-    score -= 5;
-    document.getElementById("score").innerText = score;
-    trash.remove();
-  }
+trash.onclick = function(){
 
-  document.getElementById("gameArea").appendChild(trash);
+score -= 5;
+updateScore();
+trash.remove();
 
-  fall(trash);
+}
+
+document.getElementById("gameArea").appendChild(trash);
+
+fall(trash);
+
 }
 
 function fall(item){
 
-  let position = 0;
+let position = 0;
 
-  let fallInterval = setInterval(function(){
+let interval = setInterval(function(){
 
-    position += 5;
-    item.style.top = position + "px";
+position += 4;
+item.style.top = position + "px";
 
-    if(position > 380){
-      clearInterval(fallInterval);
-      item.remove();
-    }
+if(position > 320){
 
-  },50);
+clearInterval(interval);
+item.remove();
+
+}
+
+},40);
+
+}
+
+function updateScore(){
+
+document.getElementById("score").innerText = score;
+
 }
 
 function checkWin(){
 
-  if(score >= 100){
-    document.getElementById("winMessage").innerHTML =
-    "🎉 You helped provide clean water! 🎉";
-  }
+if(score >= 100){
+
+document.getElementById("winMessage").innerText =
+"🎉 Amazing! You helped provide clean water! 🎉";
+
+}
 
 }
 
 function resetGame(){
 
-  score = 0;
-  document.getElementById("score").innerText = score;
-  document.getElementById("winMessage").innerHTML = "";
-  document.getElementById("gameArea").innerHTML = "";
+score = 0;
+updateScore();
+
+document.getElementById("winMessage").innerText = "";
+
+document.getElementById("gameArea").innerHTML = "";
 
 }
 
-setInterval(spawnDrop,1500);
+setInterval(spawnDrop,1400);
 setInterval(spawnTrash,3000);

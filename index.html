@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Collect the Water Drops</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collect the Water Drops</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<header>
-  <h1>Collect the Water Drops 💧</h1>
-  <p>Help bring clean water to communities!</p>
-</header>
+<div class="game-container">
+
+<h1>💧 Collect the Water Drops</h1>
+<p class="subtitle">Help bring clean water to communities!</p>
 
 <div class="scoreboard">
-  Score: <span id="score">0</span>
+Score: <span id="score">0</span>
 </div>
 
-<button onclick="resetGame()">Reset Game</button>
+<button onclick="resetGame()" class="reset-btn">Reset Game</button>
 
 <div id="gameArea"></div>
 
 <div id="winMessage"></div>
+
+</div>
 
 <script src="script.js"></script>
 
